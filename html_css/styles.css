@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Peddana&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+h1{
+   font-family: 'Roboto', sans-serif;
+   padding-top: 30px
+}
+
+.degree{
+  font-family: 'Peddana', serif;
+}
+
+a{
+color: gray;
+text-decoration: none;
+}
+
+a:hover{
+text-decoration: underline;
+
+}
+p{
+font-size: 20px;
+}
+
+.img_container{
+  height: 100%;
+  width:100%;
+  display: inline-block;
+  justify-content: center;
+  margin-top: -8px;
+}
+
+.main_line{
+padding-left: 8px;
+padding-right: 8px;
+margin-top: -7px;
+margin-bottom: 9.5px;
+font-family: 'Raleway', sans-serif;
+
+
+}
+
+
+
+img{
+width: 30px;
+padding: 5px;
+height: 30px;
+}
+
+.card{
+
+  width: 500px;
+  height: 280px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  margin-top: -140px;
+  margin-left: -250px;
+  background-color: #fffffa;
+  text-align: center;
+
+}
+
+
+
+
+html{
+
+background-color:  #f6f6ec;
+
+}
+
+.button {
+  background-color: #F8F8F8; /* Green */
+  color: black;
+  padding: 8px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.textboxid
+{
+    height:26px;
+    font-size:14pt;
+}
