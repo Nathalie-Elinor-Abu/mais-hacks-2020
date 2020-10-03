@@ -11,7 +11,6 @@ from nltk.stem import WordNetLemmatizer
 # nltk.download('stopwords')
 from nltk.corpus import wordnet
 from nltk.tokenize import TweetTokenizer
-from sklearn.model_selection import train_test_split
 
 
 data = pd.read_csv("../data/mbti.csv")
