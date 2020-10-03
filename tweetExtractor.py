@@ -39,9 +39,8 @@ def get_tweets_array(target,num_tweets):
             break
         print(status.full_text)
         array = array + [status.full_text]
-        count   = count + 1
+        count = count + 1
     return array
 
-
-for x in get_tweets_array(50393960, 20):
+for x in get_tweets_array(50393960, 1):
     print(x)
