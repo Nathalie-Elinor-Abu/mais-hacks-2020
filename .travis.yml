@@ -1,0 +1,9 @@
+os:
+  - linux
+
+dist: xenial
+
+language: python
+
+script:
+  - python3 mais-hacks-2020/application/app.py 
