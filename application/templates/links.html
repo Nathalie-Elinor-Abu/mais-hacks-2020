@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>MBTI Text Classifier</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>MBTI Text Classifier</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-  <div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse">
     <ul class="nav navbar-nav navbar-static-top" role="tablist">
-      <li class="active"><a href="{{ url_for('about') }}">MBTI Personality Classifier</a></li>
-      <li><a href="{{ url_for('text') }}">Paste Text</a></li>
-      <li><a href="{{ url_for('twitter') }}">Tweet Link</a></li>
+        <li class="active"><a href="{{ url_for('about') }}">MBTI Personality Classifier</a></li>
+        <!-- <li><a href="{{ url_for('text') }}">Paste Text</a></li> -->
+        <!--<li><a href="{{ url_for('twitter') }}"></a></li>-->
     </ul>
-  </div>
-    <div class="card">
-        <h1>MTBI Personality Classifier</h1>
-        <div>
-            <div class="main_line">
-                Insert a link to a tweet below:
-            </div>
-            <form method="post">
-                <input class="textboxid" type="text" id="fname" name="fname"><br><br>
-
-                <button type="submit" name="button" class="button">submit</button>
-            </form>
-        </div>
+</div>
+<form action="/action_page.php">
+    <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" id="email">
     </div>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd">
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
 </html>

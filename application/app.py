@@ -1,34 +1,38 @@
-import flask
+from flask import Flask, redirect, url_for, request, render_template, Response, jsonify, redirect
+from werkzeug.utils import secure_filename
+from gevent.pywsgi import WSGIServer
 import pickle
 
 # Use pickle to load in the pre-trained model.
 #todo with open(f'model/mbti_model.pkl', 'rb') as f:
 #    model = pickle.load(f)
 
-app = flask.Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates')
 
-def test():
-    return "Works!"
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def about():
-    return flask.render_template('index.html')
+    return render_template('index.html')
 
 
-@app.route('/twitter-links/')
+@app.route('/twitter-links')
 def twitter():
-    return flask.render_template('links.html')
+    return render_template('links.html')
 
 
-@app.route('/cp-text/')
+@app.route('/cp-text')
 def text():
-    return flask.render_template('cp-text.html')
+    return render_template('cp-text.html')
 
 
-@app.route('/result/')
+@app.route('/predict', methods=['POST'])
 def output():
-    return flask.render_template('result.html')
+    return render_template('result.html')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Serve the app with gevent
+    http_server = WSGIServer(('0.0.0.0', 5000), app)
+    print('WSGI Serving at http://127.0.0.1:5000/')
+    http_server.serve_forever()
+
