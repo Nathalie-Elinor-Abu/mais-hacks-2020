@@ -1,4 +1,5 @@
-/.idea
+.idea/*
 .DS_store
-/venv
-/model/mbti.csv
+venv/*
+*.log
+model/mbti.csv
