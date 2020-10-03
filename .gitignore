@@ -1,5 +1,7 @@
 .idea/*
+nltk_data/*
 .DS_store
+application/__pycache__/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

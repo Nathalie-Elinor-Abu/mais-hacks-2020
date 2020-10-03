@@ -2,10 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Peddana&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&family=Raleway:wght@300&display=swap');
+
 h1{
    font-family: 'Roboto', sans-serif;
    padding-top: 30px
 }
+
+
+
 
 .degree{
   font-family: 'Peddana', serif;
@@ -87,4 +92,31 @@ background-color:  #f6f6ec;
 {
     height:26px;
     font-size:14pt;
+}
+
+.outputtext{
+  font-family:'Roboto', sans-serif;
+  font-size:32px;
+  
+  
+  
+}
+
+.about_writing{
+  
+    font-family:'Roboto', sans-serif;
+  font-size:20px;
+  padding-right:20px;
+  padding-left:20px;
+    padding-top:10px;
+}
+
+.about_outputtext{
+  font-size: 15px;
+  
+}
+
+.h1_home{
+  margin-bottom:10px;
+  margin-top: 10px;
 }
