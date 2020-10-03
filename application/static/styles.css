@@ -1,62 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Peddana&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&family=Raleway:wght@300&display=swap');
 
 h1{
-   font-family: 'Roboto', sans-serif;
-   padding-top: 30px
+    font-family: 'Roboto', sans-serif;
+    padding-top: 30px;
 }
 
-
-
-
 .degree{
-  font-family: 'Peddana', serif;
+    font-family: 'Peddana', serif;
 }
 
 a{
-color: gray;
-text-decoration: none;
+    color: gray;
+    text-decoration: none;
 }
 
 a:hover{
-text-decoration: underline;
-
+    text-decoration: underline;
 }
+
 p{
-font-size: 20px;
+    font-size: 20px;
 }
 
 .img_container{
-  height: 100%;
-  width:100%;
-  display: inline-block;
-  justify-content: center;
-  margin-top: -8px;
+    height: 100%;
+    width:100%;
+    display: inline-block;
+    justify-content: center;
+    margin-top: -8px;
 }
 
 .main_line{
-padding-left: 8px;
-padding-right: 8px;
-margin-top: -7px;
-margin-bottom: 9.5px;
-font-family: 'Raleway', sans-serif;
-
-
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: -7px;
+    margin-bottom: 9.5px;
+    font-family: 'Raleway', sans-serif;
 }
 
-
-
 img{
-width: 30px;
-padding: 5px;
-height: 30px;
+    width: 30px;
+    padding: 5px;
+    height: 30px;
 }
 
 .card{
-
   width: 500px;
   height: 280px;
   top: 50%;
@@ -66,7 +57,6 @@ height: 30px;
   margin-left: -250px;
   background-color: #fffffa;
   text-align: center;
-
 }
 
 

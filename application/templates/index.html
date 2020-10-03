@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>MBTI Text Classifier</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-  <div class="card">
-    <h1 class="h1_home">Home</h1>
-      <div>
-        <div class="about_writing">
-          This project takes in a string of text and uses machine learning to match it to an MBTI personality type,
-          click here to input a <a href="{{ url_for('twitter') }}">tweet</a> or <a href="{{ url_for('text') }}">text</a>.
-          </div>
-            <p class="about_outputtext">
-              Made with love by
-              <a href="https://github.com/nredick">Nathalie</a>,
-              <a href="https://github.com/elinorpd">Elinor</a>,
-              & <a href="https://github.com/abubakardaud">Abu</a>
-            </p>
-          </div>
-      </div>
+    <div class="navbar navbar-inverse">
+      <ul class="nav navbar-nav navbar-static-top" role="tablist">
+        <li class="active"><a href="{{ url_for('about') }}">MBTI Personality Classifier</a></li>
+        <li><a href="{{ url_for('text') }}">Paste Text</a></li>
+        <li><a href="{{ url_for('twitter') }}">Tweet Link</a></li>
+      </ul>
+    </div>
+
+    <div class="container-fluid">
+      This classifier takes an input of text of a link to a tweet and uses machine learning to match it to an MBTI personality type.
+    </div>
+
+    <div class="container-fluid">
+      <p class="">
+        Made with love by
+        <a href="https://github.com/nredick">Nathalie</a>,
+        <a href="https://github.com/elinorpd">Elinor</a>,
+        & <a href="https://github.com/abubakardaud">Abu</a>.
+      </p>
+    </div>
 </html>
 
