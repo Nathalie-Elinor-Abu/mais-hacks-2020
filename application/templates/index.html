@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="styles.css">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
   <div class="card">
     <h1 class="h1_home">Home</h1>
       <div>
         <div class="about_writing">
           This project takes in a string of text and uses machine learning to match it to an MBTI personality type,
-          click here to input a <a>tweet</a> or <a>text</a>
+          click here to input a <a href="{{ url_for('twitter') }}">tweet</a> or <a href="{{ url_for('text') }}">text</a>.
           </div>
             <p class="about_outputtext">
               Made with love by
               <a href="https://github.com/nredick">Nathalie</a>,
               <a href="https://github.com/elinorpd">Elinor</a>,
-              <a href="https://github.com/abubakardaud">Abu</a>
+              & <a href="https://github.com/abubakardaud">Abu</a>
             </p>
           </div>
       </div>
