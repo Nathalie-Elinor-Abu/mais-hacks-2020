@@ -2,6 +2,14 @@ import numpy as np
 import pandas as pd
 import re
 import preprocessor as p
+import nltk
+from nltk import word_tokenize, FreqDist
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+nltk.download
+nltk.download('wordnet')
+nltk.download('stopwords')
+from nltk.tokenize import TweetTokenizer
 
 data = pd.read_csv("../data/mbti.csv")
 
@@ -24,15 +32,14 @@ def get_type_index(typ):
 data['type_index'] = data['type'].apply(get_type_index)
 
 
-# cleaning up and separating the tweets
+# separating the tweets
 def sep_tweets(tweets):
     return tweets.split('|||')
-
-
 data['tweet'] = data['posts'].apply(sep_tweets)
 data_separated = data.explode('tweet', ignore_index=True)
 print("New shape of the data", data_separated.shape)
 
+# preprocessing the tweets
 data_separated['preprocessed']=data_separated['tweet'].apply(p.tokenize)
 print(data_separated.head())
 # data_separated['tweet'] = data_separated['tweet'].apply(tokenize)
