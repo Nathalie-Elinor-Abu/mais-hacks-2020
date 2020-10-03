@@ -1,5 +1,5 @@
 .idea/*
-nltk_data/
+nltk_data/*
 .DS_store
 
 # Byte-compiled / optimized / DLL files
