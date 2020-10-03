@@ -1,0 +1,5 @@
+flask
+gunicorn
+transformers
+tensorflow
+sklearn
