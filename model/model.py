@@ -6,9 +6,10 @@ import nltk
 from nltk import word_tokenize, FreqDist
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-nltk.download
-nltk.download('wordnet')
-nltk.download('stopwords')
+# nltk.download
+# nltk.download('wordnet')
+# nltk.download('stopwords')
+from nltk.corpus import wordnet
 from nltk.tokenize import TweetTokenizer
 
 data = pd.read_csv("../data/mbti.csv")
@@ -35,12 +36,35 @@ data['type_index'] = data['type'].apply(get_type_index)
 # separating the tweets
 def sep_tweets(tweets):
     return tweets.split('|||')
+
+
 data['tweet'] = data['posts'].apply(sep_tweets)
 data_separated = data.explode('tweet', ignore_index=True)
 print("New shape of the data", data_separated.shape)
 
+
 # preprocessing the tweets
-data_separated['preprocessed']=data_separated['tweet'].apply(p.tokenize)
-print(data_separated.head())
-# data_separated['tweet'] = data_separated['tweet'].apply(tokenize)
-# print(data_separated.head())
+def clean(tweet):
+    tweets = p.tokenize(tweet.lower()).split()
+    new_words = []
+    for word in tweets:
+        # replace punctuation
+        new_word = re.sub(r'[^\w\s]', '', (word))
+        # make sure empty words are skipped
+        if new_word != '':
+            new_words.append(new_word)
+    return new_words
+
+
+data_separated['preprocessed'] = data_separated['tweet'].apply(clean)
+
+# stemming and lemmatization
+lemmatizer = nltk.stem.WordNetLemmatizer()
+w_tokenizer = TweetTokenizer()
+
+
+def lemmatize_text(text):
+    return [(lemmatizer.lemmatize(w)) for w in w_tokenizer.tokenize((text))]
+
+
+print(data_separated.head(10))
