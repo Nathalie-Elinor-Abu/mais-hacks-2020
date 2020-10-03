@@ -14,7 +14,7 @@ def about():
 
 
 @app.route('/twitter-links/')
-def main():
+def twitter():
     return flask.render_template('links.html')
 
 
