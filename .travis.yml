@@ -1,0 +1,12 @@
+os:
+  - linux
+
+dist: xenial
+
+language: python
+
+script:
+  - pip3 install flask
+
+
+  - python3 ./application/app.py
