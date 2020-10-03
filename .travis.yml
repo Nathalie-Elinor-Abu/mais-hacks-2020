@@ -9,4 +9,4 @@ script:
   - pip3 install flask
 
 
-  - python3 ./application/app.py
+  - python3 ./application/tests.py
