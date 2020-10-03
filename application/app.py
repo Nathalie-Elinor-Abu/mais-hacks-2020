@@ -9,7 +9,7 @@ app = flask.Flask(__name__, template_folder='templates')
 
 
 @app.route('/')
-def text():
+def about():
     return flask.render_template('index.html')
 
 
@@ -19,7 +19,7 @@ def main():
 
 
 @app.route('/cp-text/')
-def output():
+def text():
     return flask.render_template('cp-text.html')
 
 
