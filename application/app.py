@@ -7,6 +7,8 @@ import pickle
 
 app = flask.Flask(__name__, template_folder='templates')
 
+def test():
+    return "Works!"
 
 @app.route('/')
 def about():
