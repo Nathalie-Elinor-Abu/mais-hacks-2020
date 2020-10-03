@@ -2,4 +2,4 @@
 .DS_store
 venv/*
 *.log
-model/mbti.csv
+/model/mbti.csv
