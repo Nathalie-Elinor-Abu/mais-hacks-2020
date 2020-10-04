@@ -24,11 +24,13 @@ def about():
 
 @app.route('/predict', methods=['POST', 'GET'])
 def prediction():
-    pred = None
     if request.method == 'POST':
-        pred = request.form['input']
-        print("MBTI Personality type prediction:", pred)  # todo del testing purposes only
-    return render_template('result.html', prediction=(predict.to_mbti(pred, api)))
+        data = request.form['input']
+        print("MBTI Personality type prediction:", data)  # todo del testing purposes only
+        pred = predict.to_mbti(data, api)
+    else:
+        pred = None
+    return render_template('result.html', prediction=str(pred))
 
 
 if __name__ == '__main__':

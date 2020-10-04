@@ -3,17 +3,17 @@ import tweepy
 
 def to_mbti(string, api):
     if string is None:
-        return None
-    elif string.contains('http'):
+        return 'Error'
+    elif 'http' in string:
         screen_name = get_screenname(string)
         final_str = ""
         count = 0
         for status in tweepy.Cursor(api.user_timeline, screen_name=screen_name, tweet_mode="extended").items():
-            count = count + 1
-            if count == 50:
+            count += 1
+            if count == 5:
                 break
             print(final_str)
-            final_str = final_str + status.full_text
+            final_str += status.full_text
     else:
         final_str = string
 
