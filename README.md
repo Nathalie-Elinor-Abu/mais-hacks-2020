@@ -9,7 +9,7 @@ Project made with caffeine and tears by [Nathalie](https://github.com/nredick), 
 
 The dataset used to train the model was the [(MBTI) Myers-Briggs Personality Type Dataset](https://www.kaggle.com/datasnaek/mbti-type). The model makes a prediction based on data gathered from the users tweets and classifies them into one of the 16 MBTI types. The webapp is built on [Flask](https://flask.palletsprojects.com/en/1.1.x/), [Bootstrap](https://getbootstrap.com/), and hosted on [Herokuapp](https://www.heroku.com/). 
 
-- The app is hosted at [https://maishacks.herokuapp.com/]
+- The app is hosted at [maishacks.herokuapp.com](https://maishacks.herokuapp.com/)
 
 ## Repository Organization
 
