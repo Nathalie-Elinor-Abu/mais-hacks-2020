@@ -89,7 +89,8 @@ model.fit(train_padded, one_hot_labels, epochs =20, verbose = 1,
 '''
 
 # model using BERT
-os.makedirs("../berty-stuff/")
+if not os.path.isdir("../berty-stuff"):
+    os.makedirs("../berty-stuff/")
 print('running BERT tokenizer')
 tokenizer = transformers.AutoTokenizer.from_pretrained('bert-large-uncased')
 tokenizer.save_pretrained("../berty-stuff/")
@@ -97,9 +98,14 @@ tokenizer.save_pretrained("../berty-stuff/")
 
 maxlen = 1500
 
-train_input_ids = [tokenizer.encode(str(i),padding=True, truncation=True, return_tensors="np") for i in train.tweet.values]
+train_input_ids = []
+for i in train.tweet.values:
+    train_input_ids.extend(tokenizer.encode(str(i),padding=True, truncation=True, return_tensors="np"))
 
-val_input_ids = [tokenizer.encode(str(i),padding=True, truncation=True, return_tensors="np") for i in val.tweet.values]
+val_input_ids = []
+for i in val.tweet.values:
+    val_input_ids.extend(tokenizer.encode(str(i),padding=True, truncation=True, return_tensors="np"))
+print("train shape:\n", type(train_input_ids), np.asarray(train_input_ids).shape)
 
 def create_model():
     input_word_ids = tf.keras.layers.Input(shape=(maxlen,), dtype=tf.int32,
@@ -116,17 +122,19 @@ def create_model():
 
 print('creating BERT model')
 
-model = create_model()
+#model = create_model()
+model = transformers.AutoModelWithLMHead.from_pretrained('bert-large-uncased')
 
 model.summary()
-model.save_pretrained("../berty-stuff/")
 
 batch_size = 16
 
 print('fitting model')
-model.fit(train_input_ids, one_hot_labels, validation_data = (val_input_ids, val_labels),
+model.fit(np.asarray(train_input_ids, dtype=object), one_hot_labels, validation_data = (np.asarray(val_input_ids, dtype=object), val_labels),
           verbose = 1, epochs = 20, batch_size = batch_size,  callbacks = [tf.keras.callbacks.EarlyStopping(patience = 5)])
 print('finished fitting, testing input ids')
+model.save_pretrained("../berty-stuff/")
+
 test_input_ids = [tokenizer.encode(str(i), max_length = maxlen , pad_to_max_length = True) for i in test.cleaned_text.values]
 test_labels= tf.keras.utils.to_categorical(test.type_index.values, num_classes=16)
 print('done, evaluating model')
