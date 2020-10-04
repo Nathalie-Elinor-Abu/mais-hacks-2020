@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import re
+import string
 import preprocessor as p
 import nltk
 from nltk import word_tokenize, FreqDist
@@ -34,54 +35,24 @@ def get_type_index(typ):
 data['type_index'] = data['type'].apply(get_type_index)
 
 
-# separating the tweets
-def sep_tweets(tweets):
-    return tweets.split('|||')
+# cleaning the tweets
+def clean_text(text):
+    regex = re.compile('[%s]' % re.escape('|'))
+    text = regex.sub(" ", text)
+    words = str(text).split()
+    words = [i.lower() + " " for i in words]
+    words = [i for i in words if not "http" in i]
+    words = " ".join(words)
+    words = words.translate(words.maketrans('', '', string.punctuation))
+    return words
 
-
-data['tweet'] = data['posts'].apply(sep_tweets)
-data_separated = data.explode('tweet', ignore_index=True)
-print("New shape of the data", data_separated.shape)
-
-# save expanded, unprocessed data
-expanded=data_separated.drop(columns=['posts'])
-expanded.to_csv('../data/expanded_data.csv', index=False)
-
-
-# preprocessing and cleaning the tweets
-def clean(tweet):
-    text = p.tokenize(tweet.lower())
-
-    # stemming and lemmatization tools
-    lemmer = nltk.stem.WordNetLemmatizer()
-    w_tokenizer = TweetTokenizer()
-
-    def lem(text):
-        return [(lemmer.lemmatize(w)) for w in w_tokenizer.tokenize((text))]
-
-    def remove_punct(text):
-        new_words = []
-        for word in text:
-            # replace punctuation
-            new_word = re.sub(r'[^\w\s]', '', (word))
-            # make sure empty words are skipped
-            if (new_word != '') and (new_word != None):
-                new_words.append(new_word)
-        return new_words
-
-    return remove_punct(lem(text))
-
-
-data_separated['preprocessed']=data_separated['tweet'].apply(clean)
-
-# get rid of stop words
-stop_words = set(stopwords.words('english'))
-data_separated['cleaned'] = data_separated['preprocessed'].apply(lambda x: [item for item in \
-                                                                            x if item not in stop_words])
+data['tweet'] = data['posts'].apply(clean_text)
+print("Sample row:\n", data.tweet.values[0])
+print(data.head())
 
 # drop unnecessary columns, keeping only type,type_index,cleaned
-data_separated = data_separated.drop(columns=['posts', 'tweet', 'preprocessed'])
-print(data_separated.head(10))
+data = data.drop(columns=['posts'])
+print(data)
 
 # save to csv for ease of use
-data_separated.to_csv('../data/clean_data.csv', index=False)
+data.to_csv('../data/clean_data.csv', index=False)
