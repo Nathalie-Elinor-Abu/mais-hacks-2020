@@ -51,6 +51,11 @@ label {
     color: #99beff;
 }
 
+#ln:hover {
+    text-decoration: none currentcolor solid;
+    color: #99beff;
+}
+
 jumbotron {
     background-color: #337eff;
     color: #e6efff;
@@ -69,5 +74,6 @@ jumbotron {
     color: #ccdfff;
     font-size: 12px;
     font-family: 'Miriam Libre', sans-serif;
+    text-align: center;
 }
 

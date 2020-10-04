@@ -12,7 +12,8 @@
 <body id="bg">
 <div class="navbar">
     <ul class="nav navbar-nav navbar-static-top" role="tablist">
-        <li><h2><a href="{{ url_for('index') }}" id="navvy" style="font-size=16px;">MBTI Personality Classifier</a></h2></li>
+        <li><h2><a href="{{ url_for('index') }}" id="navvy" style="font-size=16px;">MBTI Personality Classifier</a></h2>
+        </li>
         <!-- <li><a href="{{ url_for('text') }}">Paste Text</a></li> todo examples page-->
         <!--<li><a href="{{ url_for('twitter') }}"></a></li>-->
     </ul>
@@ -22,6 +23,19 @@
     <div class="jumbotron" id="jbg">
         <label class="text-center" style="font-size:20px;">MBTI personality type prediction:</label>
         <body class="text-center" style="font-size:20px;">{{ prediction }}</body>
+    </div>
+    <br>
+    <div>
+        <p style="font-size:14px;"> Learn more about <a href="https://www.16personalities.com/personality-types"
+                                                        id="ln">Myer-Briggs Personality Types!</a></p>
+    </div>
+    <div class="navbar navbar-fixed-bottom" id="footer">
+        <p id="footer">
+            Created by
+            <a href="https://github.com/nredick">Nathalie</a>,
+            <a href="https://github.com/elinorpd">Elinor</a>, &
+            <a href="https://github.com/abubakardaud">Abu</a>. October 2020.
+        </p>
     </div>
 </div>
 </body>
