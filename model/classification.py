@@ -8,14 +8,14 @@ from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 
 global vocab
-clean_vocab = pd.read_csv("../data/clean_vocab.csv")
+clean_vocab = pd.read_csv("data/clean_vocab.csv")
 vocab = [str(s) for i, s in clean_vocab['0'].items()]
 vocab = np.array(vocab)
 
-model_FT = pickle.load(open('../model/model_FT.model', 'rb'))
-model_IE = pickle.load(open('../model/model_IE.model', 'rb'))
-model_JP = pickle.load(open('../model/model_JP.model', 'rb'))
-model_NS = pickle.load(open('../model/model_NS.model', 'rb'))
+model_FT = pickle.load(open('model/model_FT.model', 'rb'))
+model_IE = pickle.load(open('model/model_IE.model', 'rb'))
+model_JP = pickle.load(open('model/model_JP.model', 'rb'))
+model_NS = pickle.load(open('model/model_NS.model', 'rb'))
 
 # Cache the stop words for speed
 stop_words = set(stopwords.words("english"))
