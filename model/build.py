@@ -12,7 +12,7 @@ from nltk.corpus import stopwords
 # for vectorizing
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
-'''# for xgboost model
+# for xgboost model
 from xgboost import XGBClassifier
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
@@ -23,7 +23,7 @@ from xgboost import plot_importance
 from xgboost import XGBClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import StratifiedKFold
-'''
+
 # saving/loading model
 import pickle
 
@@ -155,7 +155,7 @@ entry_list, mbti_list = pre_process_data(data, remove_stop_words=True)
 print("entry_list aka clean vocabulary\n", type(entry_list), type(entry_list[0]), '\n\n',entry_list, '\n\n\n')
 vocab = pd.DataFrame(entry_list).to_csv('../data/clean_vocab.csv', index=False)
 
-'''print("Number of entries and MBTI types: ", entry_list.shape, mbti_list.shape)
+print("Number of entries and MBTI types: ", entry_list.shape, mbti_list.shape)
 
 # check
 print(entry_list[0], mbti_list[0])
@@ -179,14 +179,10 @@ tfidf_transformer = TfidfTransformer()
 print("Tf-idf...")
 # Learn the idf vector (fit) and transform a count matrix to a tf-idf representation
 X_tfidf = tfidf_transformer.fit_transform(X_count).toarray()
-pickle.dump(tfidf_transformer, open('tfidf_transformer.pkl', 'wb'))
-pickle.dump(token_counts, open('token_counts.pkl', 'wb'))
 
 
 
-
-'''
-'''feature_names = list(enumerate(token_counts.get_feature_names()))
+feature_names = list(enumerate(token_counts.get_feature_names()))
 #print(feature_names, X_tfidf.shape)
 
 
@@ -210,7 +206,7 @@ param = {}
 param['n_estimators'] = 200
 param['max_depth'] = 2
 param['nthread'] = 8
-param['learning_rate'] = 0.2
+param['learning_rate'] = 0.1
 
 # Let's train type indicator individually
 for l in range(len(type_indicators)):
@@ -220,9 +216,9 @@ for l in range(len(type_indicators)):
     Y = mbti_list[:, l]
 
     # split data into train and test sets
-    seed = 7
-    test_size = 0.33
-    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=test_size, random_state=seed)
+    # seed = 7
+    test_size = 0.2
+    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=test_size)
 
     # fit model on training data
     model = XGBClassifier(**param).fit(X_train, y_train)
@@ -233,5 +229,3 @@ for l in range(len(type_indicators)):
     # evaluate predictions
     accuracy = accuracy_score(y_test, predictions)
     print("* %s Accuracy: %.2f%%" % (type_indicators[l], accuracy * 100.0))
-
-'''

@@ -1,4 +1,5 @@
 import tweepy
+from model import classification
 
 
 def to_mbti(string, api):
@@ -10,16 +11,16 @@ def to_mbti(string, api):
         count = 0
         for status in tweepy.Cursor(api.user_timeline, screen_name=screen_name, tweet_mode="extended").items():
             count += 1
-            if count == 5:
+            if count == 10:
                 break
             print(final_str)
             final_str += status.full_text
     else:
         final_str = string
 
-    # todo wrap model around final_str and return the mbti
+    mbti = classification.classify(final_str)
 
-    return final_str
+    return mbti
 
 
 def get_screenname(string):
