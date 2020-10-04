@@ -4,23 +4,25 @@
     <title>MBTI Text Classifier</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<div class="navbar navbar-inverse">
+<body id="bg">
+<div class="navbar">
     <ul class="nav navbar-nav navbar-static-top" role="tablist">
-        <li class="active"><a href="{{ url_for('index') }}">MBTI Personality Classifier</a></li>
-        <!-- <li><a href="{{ url_for('text') }}">Paste Text</a></li> -->
+        <li><h2><a href="{{ url_for('index') }}" id="navvy" style="font-size=16px;">MBTI Personality Classifier</a></h2></li>
+        <!-- <li><a href="{{ url_for('text') }}">Paste Text</a></li> todo examples page-->
         <!--<li><a href="{{ url_for('twitter') }}"></a></li>-->
     </ul>
 </div>
 
 <div class="container-fluid">
-    <div class="jumbotron">
-        <label class="text-center">MBTI personality type prediction:</label>
-        <body class="text-center">{{ prediction }}</body>
+    <div class="jumbotron" id="jbg">
+        <label class="text-center" style="font-size:20px;">MBTI personality type prediction:</label>
+        <body class="text-center" style="font-size:20px;">{{ prediction }}</body>
     </div>
 </div>
+</body>
 </html>
