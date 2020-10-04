@@ -1,3 +1,6 @@
+data/stopwords/*
+Pipfile
+Pipfile.lock
 .idea/*
 nltk_data/*
 .DS_store
