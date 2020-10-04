@@ -17,6 +17,10 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import plot_confusion_matrix
+from sklearn import svm
+from sklearn.linear_model import SGDClassifier
+from sklearn import preprocessing
+from datetime import datetime
 
 
 MAX_SEQ_LEN = 25
@@ -102,7 +106,17 @@ text_clf = Pipeline([
     ('tfidf', TfidfTransformer()),
     ('clf', MultinomialNB()),
 ])
+text_clf = Pipeline([
+    ('vect', CountVectorizer()),
+    ('tfidf', TfidfTransformer()),
+    ('clf', SGDClassifier(loss='hinge', penalty='l2',
+                          alpha=1e-3, random_state=42,
+                          max_iter=5, tol=None)),
+])
+
+print("Start Time =", datetime.now().strftime("%H:%M:%S"))
 text_clf.fit(tokenizer.sequences_to_texts_generator(train_text_vec), y_train.argmax(axis=1))
 predictions = text_clf.predict(tokenizer.sequences_to_texts_generator(test_text_vec))
-print('Baseline Accuracy Using Naive Bayes: ', (predictions == y_test.argmax(axis = 1)).mean())
+print('Baseline Accuracy Using SGD: ', (predictions == y_test.argmax(axis = 1)).mean())
 print('F1 Score:', f1_score(y_test.argmax(axis = 1), predictions, average='weighted'))
+print("End Time =", datetime.now().strftime("%H:%M:%S"))
