@@ -4,7 +4,7 @@ Pipfile.lock
 .idea/*
 nltk_data/*
 .DS_store
-application/__pycache__/
+deploy/__pycache__/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
