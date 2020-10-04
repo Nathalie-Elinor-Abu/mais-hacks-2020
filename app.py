@@ -37,10 +37,16 @@ def about():
 def prediction():
     pred = None
     if request.method == 'POST':
-        pred = request.form['link']
+        pred = request.form['input']
+        if pred.contains('http'):
+            pass
+            # todo pass to tweet extractor THEN to preprocess -> model
+            # try - except "uove exceeded the allotted number of tweets for this time period, try copy/pasting your data instead
+        else:
+            pass
+            # todo pass straight to preprocess -> model
         print("MBTI Personality type prediction:", pred)
     return render_template('result.html', prediction=(text_logic.to_mtbi(pred,api)))
-    #return render_template('predict.html', predictions=request.form)
 
 
 if __name__ == '__main__':

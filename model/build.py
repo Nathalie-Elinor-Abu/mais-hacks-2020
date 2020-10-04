@@ -12,7 +12,7 @@ from nltk.corpus import stopwords
 # for vectorizing
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
-# for xgboost model
+'''# for xgboost model
 from xgboost import XGBClassifier
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
@@ -23,7 +23,7 @@ from xgboost import plot_importance
 from xgboost import XGBClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import StratifiedKFold
-
+'''
 # saving/loading model
 import pickle
 
@@ -152,10 +152,10 @@ def pre_process_data(data, remove_stop_words=True, remove_mbti_profiles=True):
 
 
 entry_list, mbti_list = pre_process_data(data, remove_stop_words=True)
-print("entry_list aka clean vocabulary\n", entry_list, '\n\n\n')
+print("entry_list aka clean vocabulary\n", type(entry_list), type(entry_list[0]), '\n\n',entry_list, '\n\n\n')
 vocab = pd.DataFrame(entry_list).to_csv('../data/clean_vocab.csv', index=False)
 
-print("Number of entries and MBTI types: ", entry_list.shape, mbti_list.shape)
+'''print("Number of entries and MBTI types: ", entry_list.shape, mbti_list.shape)
 
 # check
 print(entry_list[0], mbti_list[0])
@@ -186,7 +186,7 @@ pickle.dump(token_counts, open('token_counts.pkl', 'wb'))
 
 
 '''
-feature_names = list(enumerate(token_counts.get_feature_names()))
+'''feature_names = list(enumerate(token_counts.get_feature_names()))
 #print(feature_names, X_tfidf.shape)
 
 
