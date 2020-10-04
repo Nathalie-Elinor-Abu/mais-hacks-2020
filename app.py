@@ -27,6 +27,7 @@ def text():
 
 @app.route('/predict', methods=['POST', 'GET'])
 def prediction():
+    pred = None
     if request.method == 'POST':
         pred = request.form['link']
         print("MBTI Personality type prediction:", pred)
