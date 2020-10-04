@@ -21,8 +21,8 @@ print(data.head(5))
 print("Shape of the data", data.shape)  # 8675 rows, 2 columns
 
 # finding all the personality types
-types = list(np.unique(data.type.values))
-types_dict = {key: i for i, key in enumerate(types)}  # dict mapping type to int index
+types = np.unique(data.type.values)
+types_dict = {key: i for i, key in enumerate(list(types))}  # dict mapping type to int index
 print("There are", len(types), "personality types")
 print(*types, sep=', ')
 
