@@ -11,7 +11,7 @@ app = Flask(__name__, template_folder='templates')
 
 
 @app.route('/', methods=['GET'])
-def about():
+def index():
     return render_template('index.html')
 
 
@@ -25,14 +25,17 @@ def text():
     return render_template('cp-text.html')
 
 
-@app.route('/predict', methods=['POST'])
-def output():
-    return render_template('result.html')
+@app.route('/predict', methods=['POST', 'GET'])
+def prediction():
+    if request.method == 'POST':
+        pred = request.form['link']
+        print("MBTI Personality type prediction:", pred)
+    return render_template('result.html', prediction=pred)
+    #return render_template('predict.html', predictions=request.form)
 
 
 if __name__ == '__main__':
     # Serve the app with gevent
     http_server = WSGIServer(('0.0.0.0', 5000), app)
-    print('WSGI Serving at http://127.0.0.1:5000/')
+    print('WSGI serving at http://127.0.0.1:5000/')
     http_server.serve_forever()
-
