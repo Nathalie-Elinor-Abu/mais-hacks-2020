@@ -81,7 +81,7 @@ print("class weights dictionary:\n",cws_dict)
 
 
 
-'''
+
 # BASELINE STATS AND TESTS
 print('Dominant Class: ', ctr.most_common(n = 1)[0][0])
 print('Baseline Accuracy Dominant Class', (ctr.most_common(n = 1)[0][0] == test['type'].values).mean())
@@ -91,7 +91,7 @@ preds[:, 0] = 1
 preds[0] = 1 #done to suppress warning from numpy for f1 score
 print('F1 Score:', f1_score(y_test, preds, average='weighted'))
 
-# Naive Bayse Baseline
+# Naive Bayes Baseline
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
@@ -105,6 +105,4 @@ text_clf = Pipeline([
 text_clf.fit(tokenizer.sequences_to_texts_generator(train_text_vec), y_train.argmax(axis=1))
 predictions = text_clf.predict(tokenizer.sequences_to_texts_generator(test_text_vec))
 print('Baseline Accuracy Using Naive Bayes: ', (predictions == y_test.argmax(axis = 1)).mean())
-print('F1 Score:', f1_score(y_test.argmax(axis = 1), predictions, average='weighted'))'''
-
-
+print('F1 Score:', f1_score(y_test.argmax(axis = 1), predictions, average='weighted'))
