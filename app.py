@@ -25,25 +25,12 @@ def about():
 @app.route('/predict', methods=['POST', 'GET'])
 def prediction():
     if request.method == 'POST':
-<<<<<<< HEAD
-        pred = request.form['input']
-        if pred.contains('http'):
-            pass
-            # todo pass to tweet extractor THEN to preprocess -> model
-            # try - except "uove exceeded the allotted number of tweets for this time period, try copy/pasting your data instead
-        else:
-            pass
-            # todo pass straight to preprocess -> model
-        print("MBTI Personality type prediction:", pred)
-    return render_template('result.html', prediction=(text_logic.to_mtbi(pred,api)))
-=======
         data = request.form['input']
         print("MBTI Personality type prediction:", data)  # todo del testing purposes only
         pred = predict.to_mbti(data, api)
     else:
         pred = None
     return render_template('result.html', prediction=str(pred))
->>>>>>> 654971c53056f0f4ec00c912269f181b947c0bac
 
 
 if __name__ == '__main__':
