@@ -43,9 +43,12 @@ data['tweet'] = data['posts'].apply(sep_tweets)
 data_separated = data.explode('tweet', ignore_index=True)
 print("New shape of the data", data_separated.shape)
 
+# save expanded, unprocessed data
+expanded=data_separated.drop(columns=['posts'])
+expanded.to_csv('../data/expanded_data.csv', index=False)
+
 
 # preprocessing and cleaning the tweets
-
 def clean(tweet):
     text = p.tokenize(tweet.lower())
 
