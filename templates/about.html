@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MBTI Text Classifier</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body id="bg">
+<div class="navbar navbar-static-top">
+    <ul class="nav navbar-nav">
+        <li><h2><a href="{{ url_for('index') }}" id="navvy">MBTI Personality Classifier</a></h2></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('about') }}" style="margin-right:25px;font-size:18px;">About</a></li>
+    </ul>
+</div>
+
+<div>
+    <p>This project was made with caffeine and tears by Nathalie, Elinor and Abu for MAIS Hacks 2020, a 24 HR virtual AI hackathon.
+        Our goal was to build a simple machine learning model to apply (MBTI) Myers-Briggs
+        Type Indicators to Twitter users based on tweet data gathered from the Twitter API.</p>
+</div>
+
+<br>
+<div class="container-fluid rounded-pill" style="background-color:#337eff;margin:18px;">
+    <div class="row">
+        <div class="col-lg-4">
+            <p style="background-color:#337eff;font-weight:bold;font-size:18px;text-align:center;">Nathalie&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/nredick"><i class="fa fa-github" style="color:black;font-size:26px"></i></a></p>
+            <p style="background-color:#337eff;">A second year undergraduate Computer Science student at McGill University with a Supplementary Minor in
+                Computer Science and another minor in Earth and Planetary Sciences because rocks are cool.</p>
+        </div>
+        <div class="col-lg-4">
+            <p style="background-color:#337eff;font-weight:bold;font-size:18px;text-align:center;">Elinor&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/elinorpd"><i class="fa fa-github" style="color:black;font-size:26px;"></i></a></p>
+            <p style="background-color:#337eff;">In her second year at McGill University with a Joint Honours Major in Math and Computer Science and our NLP MVP for this project.</p>
+        </div>
+        <div class="col-lg-4">
+            <p style="background-color:#337eff;font-weight:bold;font-size:18px;text-align:center;">Abu&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/abubakardaud"><i class="fa fa-github" style="color:black;font-size:26px;"></i></a></p>
+            <p style="background-color:#337eff;">In his second year (you guessed it) at McGill University, he <i>also</i> working on a Joint Honours Major in Math and Computer Science.
+                A real hero in a wildly different timezone.</p>
+        </div>
+    </div>
+</div>
+
+<div class="navbar navbar-fixed-bottom">
+    <p id="footer">
+        Created by
+        <a href="https://github.com/nredick">Nathalie</a>,
+        <a href="https://github.com/elinorpd">Elinor</a>, &
+        <a href="https://github.com/abubakardaud">Abu</a>. October 2020.
+    </p>
+</div>
+</div>
+</body>
+</html>

@@ -10,11 +10,12 @@
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body id="bg">
-<div class="navbar">
-    <ul class="nav navbar-nav navbar-static-top" role="tablist">
+<div class="navbar navbar-static-top">
+    <ul class="nav navbar-nav">
         <li><h2><a href="{{ url_for('index') }}" id="navvy">MBTI Personality Classifier</a></h2></li>
-        <!-- <li><a href="{{ url_for('text') }}">Paste Text</a></li> todo examples page-->
-        <!--<li><a href="{{ url_for('twitter') }}"></a></li>-->
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('about') }}" style="margin-right:25px;font-size:18px;">About</a></li>
     </ul>
 </div>
 
@@ -23,6 +24,7 @@
         personality type.</p>
 </div>
 <br>
+
 <div class="container">
     <form action="/predict" method="post" class="jumbotron" id="jbg">
         <div class="form-group blue-border-focus">
@@ -34,6 +36,7 @@
     </form>
 </div>
 <br>
+
 <div class="navbar navbar-fixed-bottom" id="footer">
     <p id="footer">
         Created by

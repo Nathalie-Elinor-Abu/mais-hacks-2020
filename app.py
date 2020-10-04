@@ -15,14 +15,9 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/twitter-links')
-def twitter():
-    return render_template('links.html')
-
-
-@app.route('/cp-text')
-def text():
-    return render_template('cp-text.html')
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about.html')
 
 
 @app.route('/predict', methods=['POST', 'GET'])
