@@ -1,8 +1,9 @@
 # MBTI Personality Classifier 
 [![Build Status](https://travis-ci.org/Nathalie-Elinor-Abu/mais-hacks-2020.svg?branch=master)](https://travis-ci.org/Nathalie-Elinor-Abu/mais-hacks-2020) 
 
-## CLICK HERE
-http://159.203.33.173:5000 Hosted here for now demo 
+[Try it here!](http://159.203.33.173:5000)
+
+*Winner of best overall hack for the MAIS 2020 Hackathon!*
 
 This project was built for [MAIS Hacks 2020](https://maishacks.com/), a 24 HR virtual AI hackathon. Our goal was to build a simple machine learning model to apply (MBTI) Myers-Briggs Type Indicators to Twitter users based on tweet data gathered from the [Twitter API](https://developer.twitter.com/en/docs). 
 
