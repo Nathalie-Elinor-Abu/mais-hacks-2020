@@ -29,8 +29,6 @@ print(*types, sep=', ')
 # assigning numbers to each type and putting it in the type_index column
 def get_type_index(typ):
     return types_dict[typ]
-
-
 data['type_index'] = data['type'].apply(get_type_index)
 
 
@@ -45,11 +43,17 @@ print("New shape of the data", data_separated.shape)
 
 # save expanded, unprocessed data
 expanded=data_separated.drop(columns=['posts'])
+def stringify(tweet):
+    tweet=str(tweet)
+    return tweet.strip('"\'')
+expanded['tweet']=expanded['tweet'].astype(str).apply(stringify)
+expanded.dropna(inplace=True)
 expanded.to_csv('../data/expanded_data.csv', index=False)
 
 
 # preprocessing and cleaning the tweets
 def clean(tweet):
+    tweet = str(tweet).strip('"\'')
     text = p.tokenize(tweet.lower())
 
     # stemming and lemmatization tools
@@ -72,15 +76,19 @@ def clean(tweet):
     return remove_punct(lem(text))
 
 
-data_separated['preprocessed']=data_separated['tweet'].apply(clean)
+data_separated['preprocessed']=data_separated['tweet'].astype(str).apply(clean)
 
 # get rid of stop words
 stop_words = set(stopwords.words('english'))
 data_separated['cleaned'] = data_separated['preprocessed'].apply(lambda x: [item for item in \
                                                                             x if item not in stop_words])
+def back2string(tweet):
+    return ' '.join(tweet)
+data_separated['string']=data_separated['cleaned'].apply(back2string)
 
 # drop unnecessary columns, keeping only type,type_index,cleaned
 data_separated = data_separated.drop(columns=['posts', 'tweet', 'preprocessed'])
+data_separated.dropna(inplace=True)
 print(data_separated.head(10))
 
 # save to csv for ease of use

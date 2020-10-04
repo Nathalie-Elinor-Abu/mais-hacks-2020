@@ -30,7 +30,11 @@ DEFAULT_BATCH_SIZE = 128
 unprocessed_data = pd.read_csv("../data/expanded_data.csv")
 data = pd.read_csv("../data/clean_data.csv")
 # data, unprocessed_data = data.drop(columns='type'), unprocessed_data.drop(columns='type')
-train, test = train_test_split(data, random_state = 42, test_size=0.15)
+unprocessed_data['tweet']=unprocessed_data['tweet'].astype(str)
+data['cleaned']=data['string'].astype(str)
+sample=unprocessed_data.sample(frac=.25, random_state=42)
+sample_clean=data.sample(frac=.25, random_state=42)
+train, test = train_test_split(sample_clean, random_state = 42, test_size=0.15)
 train, val = train_test_split(train, random_state = 42, test_size=0.15)
 print(test.shape,train.shape,val.shape)
 print('train:\n', type(train.cleaned.values), train.cleaned.values[0])
@@ -100,23 +104,28 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestClassifier
 
-text_clf = Pipeline([
+
+'''text_clf = Pipeline([
     ('vect', CountVectorizer()),
     ('tfidf', TfidfTransformer()),
     ('clf', MultinomialNB()),
+])'''
+text_clf = Pipeline([
+    ('vect', CountVectorizer()),
+    ('tfidf', TfidfTransformer()),
+    ('clf', svm.SVC()),
 ])
 text_clf = Pipeline([
     ('vect', CountVectorizer()),
     ('tfidf', TfidfTransformer()),
-    ('clf', SGDClassifier(loss='hinge', penalty='l2',
-                          alpha=1e-3, random_state=42,
-                          max_iter=5, tol=None)),
+    ('clf', RandomForestClassifier(class_weight='balanced', n_estimators=100)),
 ])
 
 print("Start Time =", datetime.now().strftime("%H:%M:%S"))
 text_clf.fit(tokenizer.sequences_to_texts_generator(train_text_vec), y_train.argmax(axis=1))
 predictions = text_clf.predict(tokenizer.sequences_to_texts_generator(test_text_vec))
-print('Baseline Accuracy Using SGD: ', (predictions == y_test.argmax(axis = 1)).mean())
+print('Baseline Accuracy Using RFC: ', (predictions == y_test.argmax(axis = 1)).mean())
 print('F1 Score:', f1_score(y_test.argmax(axis = 1), predictions, average='weighted'))
 print("End Time =", datetime.now().strftime("%H:%M:%S"))
