@@ -9,19 +9,15 @@ import pandas as pd
 
 global vocab
 clean_vocab = pd.read_csv("../data/clean_vocab.csv")
-vocab = clean_vocab.to_numpy()
+vocab = [str(s) for i, s in clean_vocab['0'].items()]
+vocab = np.array(vocab)
 
-print(type(clean_vocab), type(clean_vocab['0']),'\n', clean_vocab['0'])
-print(type(vocab), type(vocab[0]),'\n', vocab[0])
 
 model_FT = pickle.load(open('./model_FT.model', 'rb'))
 model_IE = pickle.load(open('./model_IE.model', 'rb'))
 model_JP = pickle.load(open('./model_JP.model', 'rb'))
 model_NS = pickle.load(open('./model_NS.model', 'rb'))
-'''global tfidf_transformer
-tfidf_transformer = pickle.load(open('tfidf_transformer.pkl', 'rb'))
-global token_counts
-token_counts = pickle.load(open('token_counts.pkl', 'rb'))'''
+
 # Cache the stop words for speed
 stop_words = set(stopwords.words("english"))
 
@@ -54,18 +50,31 @@ def cleanit(tweets):
     lemmatiser = WordNetLemmatizer()
 
 
-    word = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', ' ', tweets)
-    word = re.sub("[^a-zA-Z]", " ", word)
-    word = re.sub(' +', ' ', word).lower()
-    word = " ".join([lemmatiser.lemmatize(w) for w in word.split(' ') if w not in stop_words]).strip()
+    tweets = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', ' ', tweets)
+
+    tweets = re.sub("[^a-zA-Z]", " ", tweets)
+
+    tweets = re.sub(' +', ' ', tweets)
+
+    tweets = " ".join([lemmatiser.lemmatize(w.lower()) for w in tweets.split(' ') if w not in stop_words]).strip()
+
     for t in unique_type_list:
-        word = word.replace(t, "")
-    myXcnt = token_counts.transform(np.array(word))
+        tweets = tweets.replace(t, "")
+
+    myXcnt = token_counts.transform(np.array(tweets.split()))
     X_tfidf = tfidf_transformer.transform(myXcnt).toarray()
 
-    return X_tfidf
+    results = [model_FT.predict(X_tfidf)[0],
+               model_IE.predict(X_tfidf)[0],
+               model_JP.predict(X_tfidf)[0],
+               model_NS.predict(X_tfidf)[0],
+               ]
+    b_Pers_list = [{0: 'I', 1: 'E'}, {0: 'N', 1: 'S'}, {0: 'F', 1: 'T'}, {0: 'J', 1: 'P'}]
+
+    s = ""
+    for i, l in enumerate(results):
+        s += b_Pers_list[i][l]
+    return s
 
 s = '$hello i am elinor 234 2hi hi @you great! poof #wow https://you.com'
-
-result = model_FT.predict(cleanit(s))
-print(result)
+print(cleanit(s))
