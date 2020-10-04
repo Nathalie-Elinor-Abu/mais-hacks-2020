@@ -16,6 +16,7 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.metrics import plot_confusion_matrix
 
 
 MAX_SEQ_LEN = 25
@@ -158,7 +159,7 @@ def train(model,
     return m #returns best performing model
 
 
-def model_1():
+'''def model_1():
     model = Sequential()
     model.add(Embedding(input_dim = (len(tokenizer.word_counts) + 1), output_dim = 128, input_length = MAX_SEQ_LEN))
     model.add(LSTM(128))
@@ -176,4 +177,29 @@ m1 = train(model_1,
            y_val,
            checkpoint_path='model_1.h5',
            class_weights=cws_dict
+          )'''
+def model_1b():
+    """
+    Using a Bidiretional LSTM.
+    """
+    model = Sequential()
+    model.add(Embedding(input_dim = (len(tokenizer.word_counts) + 1), output_dim = 128, input_length = MAX_SEQ_LEN))
+    model.add(SpatialDropout1D(0.3))
+    model.add(Bidirectional(LSTM(128, dropout=0.25, recurrent_dropout=0.25)))
+    model.add(Dense(64, activation='relu'))
+    model.add(Dropout(0.3))
+    model.add(Dense(16, activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    return model
+
+_ = train(model_1b,
+          train_text_vec,
+          y_train,
+          test_text_vec,
+          y_test,
+          val_text_vec,
+          y_val,
+          checkpoint_path='model_1b.h5',
+          class_weights=cws_dict,
+          print_summary = True
           )
