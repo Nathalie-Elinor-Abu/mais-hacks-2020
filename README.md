@@ -1,7 +1,7 @@
 # MBTI Personality Classifier 
-<!--[![Build Status](https://travis-ci.org/Nathalie-Elinor-Abu/mais-hacks-2020.svg?branch=master)](https://travis-ci.org/Nathalie-Elinor-Abu/mais-hacks-2020)-->
+<!--[![Build Status](https://travis-ci.org/Nathalie-Elinor-Abu/mais-hacks-2020.svg?branch=master)](https://travis-ci.org/Nathalie-Elinor-Abu/mais-hacks-2020)
 
-[Try it here!](http://159.203.33.173:5000)
+[Try it here!](http://159.203.33.173:5000)-->
 
 *Winner of best overall hack for the MAIS 2020 Hackathon!*
 
